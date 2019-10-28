@@ -81,28 +81,31 @@ def BFS():
 walls = []
 buttons = []
 
-def showSolveAlgorithms():
-    root = tk.Tk()
+root = tk.Tk()
+solveAlgRoot = tk.Tk()
 
-    button1 = tk.Button(root, text="BFS", name="bfs", command=BFS())
+def showSolveAlgorithms():
+    
+
+    button1 = tk.Button(solveAlgRoot, text="BFS", name="bfs", command=BFS())
     button1.grid(row=2, column=1, sticky="nsew")
 
-    button2 = tk.Button(root, text="DFS", name="dfs", command=DFS())
+    button2 = tk.Button(solveAlgRoot, text="DFS", name="dfs", command=DFS())
     button2.grid(row=2, column=3, sticky="nsew")
     
-    button3 = tk.Button(root, text="IDS", name="ids", command=IDS())
+    button3 = tk.Button(solveAlgRoot, text="IDS", name="ids", command=IDS())
     button3.grid(row=3, column=2, sticky="nsew")
 
-    root.grid_rowconfigure(1, weight=1)
-    root.grid_columnconfigure(1, weight=1)
+    solveAlgRoot.grid_rowconfigure(1, weight=1)
+    solveAlgRoot.grid_columnconfigure(1, weight=1)
 
-    root.title("select Algorithm")
+    solveAlgRoot.title("select Algorithm")
 
-    root.geometry("200x200")
+    solveAlgRoot.geometry("200x200")
 
-    root.resizable(0, 0)
+    solveAlgRoot.resizable(0, 0)
 
-    root.mainloop()
+    solveAlgRoot.mainloop()
 
 def setHereWall(row, col):
     widgetName = "{}, {}".format(row, col)
@@ -121,7 +124,7 @@ def setHereWall(row, col):
 
 
 def createArea(size):
-    root = tk.Tk()
+
     for row in range(0, size):
         for col in range(0, size):
             buttonText = str()
