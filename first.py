@@ -84,8 +84,20 @@ buttons = []
 root = tk.Tk()
 solveAlgRoot = tk.Tk()
 
+def saveRoadMap():
+
+    f = open("roadMap.txt", "w+")
+
+    for wall in walls:
+        widgetName = "{}, {}".format(wall[0], wall[1])
+        f.write(widgetName + "\n")
+
+    f.close()
+
+
 def showSolveAlgorithms():
     
+    saveRoadMap()
 
     button1 = tk.Button(solveAlgRoot, text="BFS", name="bfs", command=BFS())
     button1.grid(row=2, column=1, sticky="nsew")
@@ -114,14 +126,16 @@ def setHereWall(row, col):
         for i in buttons:
             if i['title'] == widgetName:
                 i['button']['bg'] = 'black'
+                i['button']['fg'] = 'white'
+                
     else:
         walls.remove([row, col])
         for i in buttons:
             if i['title'] == widgetName:
                 i['button']['bg'] = 'white'
-
-    print(walls)
-
+                i['button']['fg'] = 'black'
+                
+            
 
 def createArea(size):
 
@@ -133,6 +147,15 @@ def createArea(size):
                                command=lambda row=row, col=col: setHereWall(row, col))
             button.grid(row=row, column=col, sticky="nsew")
             buttons.append({"button": button, "title": buttonText})
+
+    file = open("roadMap.txt", "r")
+    line = file.readline()
+    while line != "":
+
+        nums = str.split(line, ", ")
+        setHereWall(int(nums[0]), int(nums[1]))
+
+        line = file.readline()
 
     nextStepButton = tk.Button(root, text = "Solve!", name="solvation", command=lambda row=size+2, col=0: showSolveAlgorithms())
     nextStepButton.grid(row=size+2, column=0, sticky="nsew")
