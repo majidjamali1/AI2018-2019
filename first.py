@@ -82,7 +82,7 @@ walls = []
 buttons = []
 
 root = tk.Tk()
-solveAlgRoot = tk.Tk()
+solveAlgRoot = ""
 
 def saveRoadMap():
 
@@ -98,6 +98,8 @@ def saveRoadMap():
 def showSolveAlgorithms():
     
     saveRoadMap()
+
+    solveAlgRoot = tk.Tk()
 
     button1 = tk.Button(solveAlgRoot, text="BFS", name="bfs", command=BFS())
     button1.grid(row=2, column=1, sticky="nsew")
